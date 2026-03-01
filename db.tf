@@ -5,18 +5,21 @@ resource "aws_db_subnet_group" "swiggy-db-sub-grp" {
 }
 
 resource "aws_db_instance" "swiggy-db" {
-  allocated_storage           = 100
+  #allocated_storage           = 100
+  allocated_storage   = 20
   storage_type                = "gp3"
   engine                      = "mysql"
   engine_version              = "8.0.43"
-  instance_class              = "db.m5.large"
+  #instance_class              = "db.m5.large"
+  instance_class      = "db.t3.micro"
   identifier                  = "swiggy-db"
   username                    = "admin"
   password                    = "Test@123*"
   parameter_group_name        = "default.mysql8.0"
   db_subnet_group_name        = aws_db_subnet_group.swiggy-db-sub-grp.name
   vpc_security_group_ids      = ["${aws_security_group.swiggy-db-sg.id}"]
-  multi_az                    = true
+  #multi_az                    = true
+  multi_az            = false
   skip_final_snapshot         = true
   publicly_accessible          = false
 
@@ -25,5 +28,7 @@ resource "aws_db_instance" "swiggy-db" {
     ignore_changes  = all
   }
 }
+
+
 
 
