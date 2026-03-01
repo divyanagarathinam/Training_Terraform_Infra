@@ -14,7 +14,7 @@ resource "aws_db_instance" "swiggy-db" {
   instance_class      = "db.t3.micro"
   identifier                  = "swiggy-db"
   username                    = "admin"
-  password                    = "Test@123*"
+  password                    = "Test123*"
   parameter_group_name        = "default.mysql8.0"
   db_subnet_group_name        = aws_db_subnet_group.swiggy-db-sub-grp.name
   vpc_security_group_ids      = ["${aws_security_group.swiggy-db-sg.id}"]
